@@ -1,0 +1,40 @@
+/**
+ * Created by yini on 2016/7/7.
+ */
+angular.module("app",[])
+    .controller("Ctrl",function($scope,$http){
+        $scope.user={
+            email:"",
+            psw:"",
+            Token:"",
+        }
+        $scope.checked=false;
+        $scope.btn=false;
+        $scope.login= function () {
+            $http.post("http://api.neuqst.qoder.cn/users/login",{email:$scope.user.email,password:$scope.user.psw})
+                .success(function(response){
+                    $scope.btn=true;
+                    $scope.msg=response.data.Msg;
+                    $scope.user.Token=response.data.token;
+                })
+        }
+        $scope.register= function () {
+            $http.post("http://api.neuqst.qoder.cn/users/register",
+                {email:$scope.user.email,password:$scope.user.psw})
+                .success(function(response){
+                    $scope.msg=response.data.Msg;
+                })
+        }
+        $scope.jump=function(){
+            location.assign("register.html");
+        }
+        //$scope.user.Token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmODgxMzQ1MC00NDQ4LTExZTYtYTliYi01NzA1ZjlhMTFlZTMiLCJleHAiOjE0Njg1NjMyNDIzODl9.UsofRHThkAV5XHpH6nnpYPp8_9WAcbE6kYt66pk26EU";
+            $scope.check=function(){
+            $http.get("http://api.neuqst.qoder.cn/home/my",{headers:{token:$scope.user.Token}})
+                .success(function(response){
+                    $scope.checked=true;
+                    $scope.Email=response.data.users.email;
+                    $scope.role=response.data.users.role;
+                })
+        }
+    })

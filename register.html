@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <script src="E:\类库\angular.min.js"></script>
+    <!--<script src="E:\类库\jquery-2.2.0.min.js"></script>-->
+    <style>
+        html,body,.pos{
+            height:100%;
+        }
+        .pos{
+            display: flex;
+            align-items: center;
+        }
+        .pos form{
+            width:30%;
+            margin:0 auto;
+        }
+
+    </style>
+</head>
+<body>
+<div ng-app="app" class="pos">
+    <form ng-controller="Ctrl" class="" novalidate name="form" ng-model="user">
+        <p>邮箱:<input type="email"  name="email" class="" ng-model="user.email" placeholder="邮箱" required>
+       <span style="color:red" ng-show="form.email.$invalid && form.email.$dirty">
+           <span ng-show="form.email.$error.required">请输入邮箱</span>
+           <span ng-show="form.email.$error.email">邮箱格式错误</span>
+       </span>
+        </p>
+
+        <p>密码:<input type="password" name="psw" class=""  ng-model="user.psw" placeholder="密码" required>
+        <span style="color:red" ng-show="form.psw.$invalid && form.psw.$dirty">
+            <span ng-show="form.psw.$error.required">请输入密码</span>
+
+        </span>
+        </p>
+        <button class="" ng-click="register()">注册</button>
+        <div ng-show="msg.length>0" class="">{{msg}}</div><p>{{user.email}}</p>
+        <p>{{user.psw}}</p>
+    </form>
+
+</div>
+</body>
+<script src="serve.js">
+
+</script>
+</html>
