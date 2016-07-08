@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>登陆界面</title>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <!--<script src="E:\类库\jquery-2.2.0.min.js"></script>-->
+  <style>
+      html,body,.pos{
+          height:100%;
+      }
+      .pos{
+          display: flex;
+          align-items: center;
+      }
+      .pos form{
+          width:30%;
+          margin:0 auto;
+      }
+
+
+  </style>
+</head>
+<body>
+<div ng-app="app" class="pos">
+    <form ng-controller="Ctrl" class="" novalidate name="form">
+       <p>邮箱：<input type="email"  name="email" class="" ng-model="user.email" placeholder="邮箱" required>
+       <span style="color:red" ng-show="form.email.$invalid && form.email.$dirty">
+           <span ng-show="form.email.$error.required">请输入邮箱</span>
+           <span ng-show="form.email.$error.email">邮箱格式错误</span>
+       </span>
+       </p>
+
+        <p>密码：<input type="password" name="psw" class=""  ng-model="user.psw" placeholder="密码" required>
+        <span style="color:red" ng-show="form.psw.$invalid && form.psw.$dirty">
+            <span ng-show="form.psw.$error.required">请输入密码</span>
+
+        </span>
+        </p>
+        <p >
+        <button class="" ng-click="login()"
+                ng-disabled="form.psw.$invalid && form.psw.$dirty||form.email.$invalid && form.email.$dirty">登录</button>
+        <button class="" ng-click="jump()">注册</button></p>
+        <div ng-show="msg.length>0" class="">{{msg}}</div>
+            <button ng-show="btn" ng-click="check()">检查</button>
+        <div ng-show="checked">
+            <p>email:{{Email}}</p>
+            <p>role:{{role}}</p>
+        </div>
+
+    </form>
+</div>
+</body>
+<script src="serve.js">
+</script>
+</html>
